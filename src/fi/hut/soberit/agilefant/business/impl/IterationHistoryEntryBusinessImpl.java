@@ -50,7 +50,7 @@ public class IterationHistoryEntryBusinessImpl extends
         long oldOriginalEstimateSum = (latest == null) ? 0 : latest.getOriginalEstimateSum();
         long effortLeftSum = (sums.first == null) ? 0 : sums.first.getMinorUnits();
         long originalEstimateSum = (sums.second == null) ? 0 : sums.second.getMinorUnits();
-        
+
         if (latest != null &&
                 Days.daysBetween(latest.getTimestamp().toDateMidnight(), new DateTime().toDateMidnight()).getDays() == 0) {
             latest.setEffortLeftSum(effortLeftSum);
@@ -62,7 +62,7 @@ public class IterationHistoryEntryBusinessImpl extends
             newEntry.setEffortLeftSum(effortLeftSum);
             newEntry.setOriginalEstimateSum(originalEstimateSum);
             newEntry.setDeltaOriginalEstimate(originalEstimateSum - oldOriginalEstimateSum);
-            iterationHistoryEntryDAO.create(newEntry);
+            iterationHistoryEntryDAO.store(newEntry);
         }
     }
     
